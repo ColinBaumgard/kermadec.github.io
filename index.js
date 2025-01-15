@@ -3,25 +3,55 @@ let map;
 
 async function initMap() {
   // The location of Hennebont
-  const position = { lat: 47.794, lng: -3.285 };
+  const departure = { lat: 46.794, lng: -1.285 };
+  const last_position = { lat: 47.794, lng: -3.285 };
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
+  const {Polyline} = await google.maps.importLibrary("maps")
+  
   // The map, centered at Hennebont
   map = new Map(document.getElementById("map"), {
-    zoom: 4,
-    center: position,
-    mapId: "DEMO_MAP_ID",
+      zoom: 4,
+      center: last_position,
+      mapId: "DEMO_MAP_ID",
   });
 
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerElement({
+  // The marker, positioned at Hennebont
+  const dep_marker = new AdvancedMarkerElement({
     map: map,
-    position: position,
+    position: departure,
+    title: "Depart",
+  });
+
+  const last_pos_marker = new AdvancedMarkerElement({
+    map: map,
+    position: last_position,
     title: "Kermadec",
   });
+
+  // Define the coordinates for the polyline
+  const polylinePath = [
+    { lat: 47.794, lng: -3.285 },
+    { lat: 48.8566, lng: 2.3522 }, // Paris
+    { lat: 51.5074, lng: -0.1278 }, // London
+    { lat: 40.7128, lng: -74.0060 }, // New York
+    departure,
+  ];
+
+  // Create the polyline
+  const journey = new Polyline({
+    path: polylinePath,
+    geodesic: true,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+
+  // Set the polyline on the map
+  journey.setMap(map);
+
 }
 
 initMap();
