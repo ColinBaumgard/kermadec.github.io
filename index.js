@@ -19,14 +19,14 @@ async function initMap() {
   });
 
   // The marker, positioned at Hennebont
-  const dep_marker = new AdvancedMarkerElement({
+  const dep_marker = new Marker({
     map: map,
     position: departure,
     title: "Depart",
     label: { text: "01/03/2025", color: "black" }
 });
 
-const last_pos_marker = new AdvancedMarkerElement({
+const last_pos_marker = new Marker({
     map: map,
     position: last_position,
     title: "Kermadec",
