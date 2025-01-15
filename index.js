@@ -23,12 +23,14 @@ async function initMap() {
     map: map,
     position: departure,
     title: "Depart",
-  });
+    label: { text: "01/03/2025", color: "black" }
+});
 
-  const last_pos_marker = new AdvancedMarkerElement({
+const last_pos_marker = new AdvancedMarkerElement({
     map: map,
     position: last_position,
     title: "Kermadec",
+    label: { text: "03/03/2025", color: "black" }
   });
 
   // Define the coordinates for the polyline
