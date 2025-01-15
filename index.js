@@ -30,7 +30,7 @@ const last_pos_marker = new Marker({
     map: map,
     position: last_position,
     title: "Kermadec",
-    label: { text: "03/03/2025", color: "black" }
+    label: "03/03/2025"
   });
 
   // Define the coordinates for the polyline
